@@ -3,11 +3,19 @@
 # Ping Pong - a status page app
 A very simple app that has the following architecture:
 
-1. an API service built using Hapi.js
-2. a Frontend service using Arch
-3. Nginx as reverse proxy to forward requests to the frontend and API
+1. an API service built using [Hapi.js](http://hapijs.com/)
+2. a Frontend service using [Arch](https://github.com/redbadger/arch)
+3. [Nginx](http://nginx.org/) as reverse proxy to forward requests to the frontend and API
 
-The API has one endpoint `/ping` which responds with `pong`
+The API has one endpoint `/ping` which responds with:
+
+```
+{
+	response: "pong"
+}
+```
+
+The API runs on `http://localhost:8000`
 
 The Frontend hits `/ping` and if the response is `200` and has `pong` in the response, we render
 
@@ -45,6 +53,9 @@ VOLUME ["/etc/nginx", "/var/log/nginx", "/var/www", "/var/log/app"]
 ### Installing Nginx
 ### Installing Supervisor
 ### Configure volumes
+
+Talk about logging a little
+
 ## Tidying things up
 `.dockerignore` - you do not want to include things like `.git`
 
