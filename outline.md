@@ -4,10 +4,10 @@
 A very simple app that has the following architecture:
 
 1. an API service built using [Hapi.js](http://hapijs.com/)
-2. a Frontend service using [Arch](https://github.com/redbadger/arch)
+2. a Frontend service using [Arch](https://github.com/arch-js/arch)
 3. [Nginx](http://nginx.org/) as reverse proxy to forward requests to the frontend and API
 
-The API has one endpoint `/ping` which responds with:
+The API runs on `http://localhost:8000` and has one endpoint `/ping` which responds with:
 
 ```
 {
@@ -15,15 +15,24 @@ The API has one endpoint `/ping` which responds with:
 }
 ```
 
-The API runs on `http://localhost:8000`
 
-The Frontend hits `/ping` and if the response is `200` and has `pong` in the response, we render
+When we are uncertain about the state of the server show this default response: 
+
+![Uncertainty](http://cdn.meme.am/instances/500x/52426766.jpg)
+
+Once The Frontend hits `/ping` and when the response is `200` and has `pong` in the response, we render:
 
 ![Ermahgerd - It's alive!](http://www.bluetrain.ca/wp-content/uploads/its_alive.jpg)
 
 If the service fails to respond we render:
 
 ![He's dead Jim](https://spiritualmusclehead.files.wordpress.com/2013/04/hes-dead-jim.jpg)
+
+The code for app can be found [here](https://github.com/gregstewart/deploying-with-confidence-code). You can start the api with `cd api && npm start` and the front end with `cd frontend && npm start`. The services run on [http://localhost:8000](http://localhost:8000) and [http://localhost:3000](http://localhost:3000) respectively. When you visit the frontend it should after a few seconds render the success view. If you kill the `API` process, then after a few seconds it will render the error view.
+
+![Here's what this looks like](manuscript/images/screenshot.gif)
+
+I added a simple test for the API code, you can run it using `cd api && npm test`. We will use this to validate our build.
 
 
 # Building our container
